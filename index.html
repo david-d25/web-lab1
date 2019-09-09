@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8">
+    <title>Моя супер лаба</title>
+</head>
+
+<body>
+<div class="header">
+    <div class="container">
+        <div class="header__student-info">
+            Давтян Д. А., P3101, вариант 201007
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+
+        <div class="graph-view-wr">
+            <svg class="graph-view panel" viewBox="0 0 1000 1000">
+
+                <path   d=" M500 500l -200 0 200 -400ZM300 500a200 200 45 0 0 200
+                            200l0 -200ZM500 500l200 0 0 400 -200 0 0 -400Z"
+                        fill="#349eeb"
+                        stroke-width="0"></path>
+
+                <path   d=" M0 500l1000 0 -30 -20m30 20l-30 20M100 490l0 20M300 490l0 20M700 490l0 20
+                            M900 490l0 20M500 1000l0 -1000 -20 30m20 -30l20 30M490 900l20 0M490 700l20 0
+                            M490 300l20 0M490 100l20 0"
+                        stroke="black"
+                        fill="transparent"
+                        stroke-width="3"></path>
+
+                <text x="10%" y="49%" font-size="48" class="graph-view__text-x">-R</text>
+                <text x="30%" y="49%" font-size="48" class="graph-view__text-x">-R/2</text>
+                <text x="70%" y="49%" font-size="48" class="graph-view__text-x">R/2</text>
+                <text x="90%" y="49%" font-size="48" class="graph-view__text-x">R</text>
+                <text x="97%" y="48%" font-size="48" class="graph-view__text-x">x</text>
+
+                <text x="52%" y="10%" font-size="48" class="graph-view__text-y">R</text>
+                <text x="52%" y="30%" font-size="48" class="graph-view__text-y">R/2</text>
+                <text x="52%" y="70%" font-size="48" class="graph-view__text-y">-R/2</text>
+                <text x="52%" y="90%" font-size="48" class="graph-view__text-y">-R</text>
+                <text x="53%" y="3%" font-size="48" class="graph-view__text-y">y</text>
+
+            </svg>
+        </div>
+
+        <div class="controls">
+            
+            <form method="POST" action="check.php">
+
+                <div class="panel my-class">
+                    <p class="panel__title">Координата X</p>
+                    <div class="panel__content">
+                        <label><input type="radio" name="x" value="-2.0">-2</label>
+                        <label><input type="radio" name="x" value="-1.5">-1.5</label>
+                        <label><input type="radio" name="x" value="-1.0">-1</label>
+                        <label><input type="radio" name="x" value="-0.5">-0.5</label>
+                        <label><input type="radio" name="x" value="0.0">0</label>
+                        <label><input type="radio" name="x" value="0.5">0.5</label>
+                        <label><input type="radio" name="x" value="1.0">1</label>
+                        <label><input type="radio" name="x" value="1.5">1.5</label>
+                        <label><input type="radio" name="x" value="2.0">2</label>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <label for="y" class="panel__title">Координата Y</label>
+                    <input type="text" name="y" id="y">
+                </div>
+
+                <div class="panel">
+                    <p class="panel__title">Число R</p>
+                    <div class="panel__content">
+                        <label><input type="checkbox" name="r" value="1">1</label>
+                        <label><input type="checkbox" name="r" value="2">2</label>
+                        <label><input type="checkbox" name="r" value="3">3</label>
+                        <label><input type="checkbox" name="r" value="4">4</label>
+                        <label><input type="checkbox" name="r" value="5">5</label>
+                    </div>
+                </div>
+
+                <div class="panel hidden err-msg" id="err-msg"></div>
+
+                <button id="submit-btn" type="submit" class="submit-btn">IMMA CHARGIN' MAH LAZER</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #e1e1ed;
+        font-family: sans-serif;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+
+    .container {
+        width: 950px;
+        margin: auto;
+    }
+
+    .header {
+        background: #3939b8;
+        font-family: monospace;
+        color: white;
+        padding: 15px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .content {
+        padding-top: 25px;
+    }
+
+    .graph-view {
+        width: 500px;
+        height: 500px;
+        margin: 0 50px;
+        user-select: none;
+    }
+
+    .panel {
+        background: rgba(255, 255, 255, .5);
+        padding: 10px;
+        margin: 5px 5px 10px 5px;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+    }
+
+    .err-msg {
+        color: darkred;
+    }
+
+    .panel label {
+        margin: 5px 0;
+    }
+
+    .panel__title {
+        text-align: center;
+    }
+
+    .panel__content {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #y {
+        text-align: center;
+        margin: 3% 0;
+    }
+
+    .graph-view-wr {
+        padding-bottom: 50px;
+    }
+
+    .graph-view__text-x {
+        dominant-baseline: text-after-edge;
+        text-anchor: middle;
+    }
+    
+    .graph-view__text-y {
+        dominant-baseline: middle;
+        text-anchor: start;
+    }
+
+    .content > .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .submit-btn {
+        background: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 24px;
+        max-width: 70%;
+        margin: auto;
+        display: block;
+        padding: 10px 20px;
+        box-shadow: 0 2px 1px rgba(0, 0, 0, .1);
+        transition: box-shadow 300ms, background 300ms;
+        outline: none;
+    }
+
+    .submit-btn:hover {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+    }
+
+    .submit-btn:active {
+        background: rgb(240, 240, 240);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .4);
+    }
+
+    @media (max-width: 1080px) {
+        .container {
+            width: 680px;
+        }
+
+        .graph-view {
+            width: 370px;
+            height: 370px;
+        }
+    }
+
+    @media (max-width: 720px) {
+        .container {
+            width: 400px;
+        }
+
+        .graph-view {
+            width: 350px;
+            height: 350px;
+            margin: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            width: 100%;
+        }
+
+        .graph-view {
+            width: 250px;
+            height: 250px;
+            margin: 20px;
+            font-size: 14px;
+        }
+    }
+
+</style>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
